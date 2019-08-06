@@ -154,7 +154,7 @@ trait MetaFields
         $meta = $this->meta()->where('meta_key', $key)
             ->firstOrNew(['meta_key' => $key]);
 
-        $result = $meta->fill(['meta_value' => $value])->save();
+        $result = $meta->fill(['meta_value' => $this->parseValue($value)])->save();
         $this->load('meta');
 
         return $result;
@@ -195,7 +195,7 @@ trait MetaFields
     {
         $meta =  $this->meta()->create([
             'meta_key' => $key,
-            'meta_value' => $value,
+            'meta_value' => $this->parseValue($value),
         ]);
         $this->load('meta');
 
@@ -213,5 +213,14 @@ trait MetaFields
         }
 
         return null;
+    }
+
+    /**
+     * @param  string $value
+     * @return mixed
+     */
+    public function parseValue($value)
+    {
+        return (is_array($value)) ? serialize($value) : $value;
     }
 }

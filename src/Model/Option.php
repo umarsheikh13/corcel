@@ -74,11 +74,37 @@ class Option extends Model
 
     /**
      * @param string $name
+     * @param mixed $value
+     * @param string $namespace
+     * @return Option
+     */
+    public static function set($name, $value, $namespace = '')
+    {
+        if (!empty($namespace)) {
+            $options = self::get($name, $namespace);
+            $options = ($options) ? $options : [];
+            $options[$name] = $value;
+            self::add($namespace, $options);
+        } else {
+            return self::add($name, $value);
+        }
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
      * @return mixed
      */
-    public static function get($name)
+    public static function get($name, $namespace = '')
     {
-        if ($option = self::where('option_name', $name)->first()) {
+        if (!empty($namespace) && $option = self::where('option_name', $name)->first()) {
+            $options = $option->value;
+            if ($options && $name == 'all') {
+                return $options;
+            } elseif ($options && isset($options[$name])) {
+                return $options[$name];
+            }
+        } elseif ($option = self::where('option_name', $name)->first()) {
             return $option->value;
         }
 

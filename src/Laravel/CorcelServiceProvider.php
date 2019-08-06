@@ -23,8 +23,17 @@ class CorcelServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadRoutes();
         $this->publishConfigFile();
         $this->registerAuthProvider();
+    }
+
+    /**
+     * @return void
+     */
+    private function loadRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
     }
 
     /**

@@ -25,7 +25,7 @@ class MetaCollection extends Collection
 
             if ($meta) {
                 try {
-                    $value = unserialize($meta->meta_value);
+                    $value = @unserialize($meta->meta_value);
 
                     return $value === false && $meta->meta_value !== false ?
                         $meta->meta_value :
