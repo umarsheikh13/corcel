@@ -1,12 +1,12 @@
 <?php
 
-namespace Ronin\Http\Controllers;
+namespace Corcel\Http\Controllers;
 
 use Corcel\Model\Page;
 use Corcel\Model\Post;
 use Corcel\Model\Option;
 use Corcel\Model\Taxonomy;
-use Ronin\Http\Controllers\Controller;
+use Corcel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
