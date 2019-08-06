@@ -25,13 +25,13 @@ class MetaCollection extends Collection
 
             if ($meta) {
                 try {
-                    $value = unserialize($this->meta_value);
+                    $value = unserialize($meta->meta_value);
 
-                    return $value === false && $this->meta_value !== false ?
-                        $this->meta_value :
+                    return $value === false && $meta->meta_value !== false ?
+                        $meta->meta_value :
                         $value;
                 } catch (Exception $ex) {
-                    return $this->meta_value;
+                    return $meta->meta_value;
                 }
             }
         }
