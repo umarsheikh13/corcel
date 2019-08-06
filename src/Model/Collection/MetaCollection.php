@@ -23,7 +23,17 @@ class MetaCollection extends Collection
                 return $meta->meta_key === $key;
             });
 
-            return $meta ? $meta->meta_value : null;
+            if ($meta) {
+                try {
+                    $value = unserialize($this->meta_value);
+
+                    return $value === false && $this->meta_value !== false ?
+                        $this->meta_value :
+                        $value;
+                } catch (Exception $ex) {
+                    return $this->meta_value;
+                }
+            }
         }
 
         return null;
