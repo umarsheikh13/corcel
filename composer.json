@@ -18,7 +18,8 @@
         "illuminate/support": "5.8.*",
         "fzaninotto/faker": "^1.6",
         "hautelook/phpass": "0.3.*",
-        "thunderer/shortcode": "^0.6.2"
+        "thunderer/shortcode": "^0.6.2",
+        "mpratt/embera": "~1.0"
     },
     "require-dev": {
         "orchestra/testbench": "3.7.x@dev",
