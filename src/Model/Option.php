@@ -97,7 +97,7 @@ class Option extends Model
      */
     public static function get($name, $namespace = '')
     {
-        if (!empty($namespace) && $option = self::where('option_name', $name)->first()) {
+        if (!empty($namespace) && $option = self::where('option_name', $namespace)->first()) {
             $options = $option->value;
             if ($options && $name == 'all') {
                 return $options;
