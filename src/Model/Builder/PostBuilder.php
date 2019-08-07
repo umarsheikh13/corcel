@@ -62,7 +62,7 @@ class PostBuilder extends Builder
     {
         return $this->where('post_name', $slug);
     }
-    
+
     /**
      * @param string $postParentId
      * @return PostBuilder
@@ -75,14 +75,15 @@ class PostBuilder extends Builder
     /**
      * @param string $taxonomy
      * @param mixed $terms
+     * @param string $column
      * @return PostBuilder
      */
-    public function taxonomy($taxonomy, $terms)
+    public function taxonomy($taxonomy, $terms, $column = 'slug')
     {
-        return $this->whereHas('taxonomies', function ($query) use ($taxonomy, $terms) {
+        return $this->whereHas('taxonomies', function ($query) use ($taxonomy, $terms, $column) {
             $query->where('taxonomy', $taxonomy)
-                ->whereHas('term', function ($query) use ($terms) {
-                    $query->whereIn('slug', is_array($terms) ? $terms : [$terms]);
+                ->whereHas('term', function ($query) use ($terms, $column) {
+                    $query->whereIn($column, is_array($terms) ? $terms : [$terms]);
                 });
         });
     }
@@ -98,7 +99,7 @@ class PostBuilder extends Builder
         }
 
         $terms = is_string($term) ? explode(' ', $term) : $term;
-        
+
         $terms = collect($terms)->map(function ($term) {
             return trim(str_replace('%', '', $term));
         })->filter()->map(function ($term) {
