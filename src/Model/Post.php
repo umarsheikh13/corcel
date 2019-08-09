@@ -97,6 +97,7 @@ class Post extends Model
      * @var array
      */
     protected static $aliases = [
+        'id' => 'ID',
         'title' => 'post_title',
         'content' => 'post_content',
         'excerpt' => 'post_excerpt',
