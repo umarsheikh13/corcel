@@ -57,6 +57,7 @@ class User extends Model implements Authenticatable, CanResetPassword
      * @var array
      */
     protected static $aliases = [
+        'id' => 'ID',
         'login' => 'user_login',
         'email' => 'user_email',
         'slug' => 'user_nicename',
@@ -74,6 +75,7 @@ class User extends Model implements Authenticatable, CanResetPassword
      * @var array
      */
     protected $appends = [
+        'id',
         'login',
         'email',
         'slug',
