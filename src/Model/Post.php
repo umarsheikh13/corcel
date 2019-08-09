@@ -74,6 +74,7 @@ class Post extends Model
      * @var array
      */
     protected $appends = [
+        'id',
         'title',
         'slug',
         'content',
