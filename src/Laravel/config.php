@@ -29,7 +29,21 @@ return [
     |
     */
 
-    'location' => 'wp',
+    'wp_core_location' => 'wp',
+
+    /*
+    |--------------------------------------------------------------------------
+    | WordPress Theme Location
+    |--------------------------------------------------------------------------
+    |
+    | This is the location of the active WordPress theme in your public
+    | directory. For example if the theme is installed in the
+    | public/wp/wp-content/themes/mytheme directory then add
+    | 'wp/wp-content/themes/mytheme' as the value to the property below.
+    |
+    */
+
+    'wp_theme_location' => 'wp/wp-content/themes/corcel',
 
     /*
     |--------------------------------------------------------------------------
