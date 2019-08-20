@@ -20,6 +20,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | WordPress Location
+    |--------------------------------------------------------------------------
+    |
+    | This is the location of the WordPress installation in your public
+    | directory. For example if WordPress is installed in the public/wp/app
+    | directory then add 'wp/app' as the value to the property below.
+    |
+    */
+
+    'location' => 'wp',
+
+    /*
+    |--------------------------------------------------------------------------
     | Registered Custom Post Types
     |--------------------------------------------------------------------------
     |
@@ -32,7 +45,7 @@ return [
     */
 
     'post_types' => [
-//        'video' => App\Models\Video::class,
+        // 'video' => App\Models\Video::class,
     ],
 
     /*
@@ -48,7 +61,7 @@ return [
     */
 
     'shortcodes' => [
-//        'foo' => App\Shortcodes\FooShortcode::class,
+        // 'foo' => App\Shortcodes\FooShortcode::class,
     ],
 
     /*
