@@ -2,6 +2,7 @@
 
 namespace Corcel\Model;
 
+use Corcel\Helpers\Formatting;
 use Corcel\Concerns\AdvancedCustomFields;
 use Corcel\Concerns\Aliases;
 use Corcel\Concerns\CustomTimestamps;
@@ -270,7 +271,10 @@ class Post extends Model
      */
     public function getContentAttribute()
     {
-        return $this->stripShortcodes($this->post_content);
+        $content = $this->post_content;
+        $content = $this->stripShortcodes($content);
+        $content = Formatting::parse($content);
+        return $content;
     }
 
     /**
