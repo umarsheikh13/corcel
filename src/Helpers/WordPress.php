@@ -10,6 +10,31 @@ use Corcel\Model\Option;
 class WordPress
 {
     /**
+     * Run a WordPress function using the cmd.php file
+     * @param  string   $name The function name
+     * @param  array    $args The arguments
+     * @return mixed    The output
+     */
+    public static function fn($name, $args = [])
+    {
+        $output = false;
+        $themeLocation = env('CORCEL_WP_THEME_LOCATION');
+        if (
+            !empty($themeLocation) &&
+            file_exists(public_path($themeLocation) . '/cmd.php')
+        ) {
+            $run = exec('php ' . public_path($themeLocation) . '/cmd.php ' . $name . ((count($args)) ? ' "' . json_encode($args) . '"' : ''));
+            try {
+                $json = json_decode($run, true);
+                $output = $json['output'];
+            } catch (\Exception $e) {
+                $output = false;
+            }
+        }
+        return $output;
+    }
+
+    /**
      * Gets the post/page permalink
      * @param  integer $id The post/page ID
      * @return string      The permalink
