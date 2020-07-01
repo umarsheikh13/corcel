@@ -23,6 +23,11 @@ class Attachment extends Post
     /**
      * @var array
      */
+    protected $with = ['meta'];
+
+    /**
+     * @var array
+     */
     protected $appends = [
         'title',
         'url',

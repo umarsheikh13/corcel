@@ -119,4 +119,31 @@ class WordPress
 
         return url($link);
     }
+
+    /**
+     * Gets the image attachment urls
+     * @param  integer $id The attachment ID
+     * @return array       The image urls
+     */
+    public static function getImageAttachmentUrls($id)
+    {
+        $urls = [];
+        $appUrl = env('APP_URL');
+        $wpPath = $appUrl . '/' . env('CORCEL_WP_CORE_LOCATION', '') . '/app/uploads/';
+        if ($attachment = Attachment::find($id)) {
+            if (
+                isset($attachment->meta->_wp_attachment_metadata) &&
+                !empty($attachment->meta->_wp_attachment_metadata)
+            ) {
+                $metaData = $attachment->meta->_wp_attachment_metadata;
+                $file = $metaData['file'];
+                $filename = basename($file);
+                $filepath = str_replace($filename, '', $file);
+                foreach ($metaData['sizes'] as $size => $data) {
+                    $urls[$size] = $wpPath . $filepath . $data['file'];
+                }
+            }
+        }
+        return $urls;
+    }
 }
