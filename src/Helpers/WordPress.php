@@ -6,6 +6,7 @@ use Corcel\Model\Post;
 use Corcel\Model\User;
 use Corcel\Model\Term;
 use Corcel\Model\Option;
+use Corcel\Model\Attachment;
 
 class WordPress
 {
