@@ -71,9 +71,8 @@ class WordPress
                 $postTime = strtotime($post->post_date);
                 $categories = $post->taxonomies()->get()->toArray();
                 $category = $categories[0]['term']['slug'];
-                $user = User::find(1)->toArray();
+                $user = User::find($post->post_author)->toArray();
                 $username = $user['user_login'];
-                $author = 1;
                 $permalinkStructure = str_replace('%year%', date('Y', $postTime), $permalinkStructure);
                 $permalinkStructure = str_replace('%monthnum%', date('m', $postTime), $permalinkStructure);
                 $permalinkStructure = str_replace('%day%', date('d', $postTime), $permalinkStructure);
