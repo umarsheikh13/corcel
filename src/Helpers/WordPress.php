@@ -139,6 +139,7 @@ class WordPress
                 $file = $metaData['file'];
                 $filename = basename($file);
                 $filepath = str_replace($filename, '', $file);
+                $urls['full'] = $wpPath . $file;
                 foreach ($metaData['sizes'] as $size => $data) {
                     $urls[$size] = $wpPath . $filepath . $data['file'];
                 }
